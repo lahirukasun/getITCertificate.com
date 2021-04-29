@@ -24,7 +24,7 @@ public class UserController {
 
 	@RequestMapping("/saveUser")
 	public String saveUser(@ModelAttribute("user") User user, ModelMap modelMap) {
-		User userSaved = service.UsesaveUser(user);
+		User userSaved = service.UsesaveUser(user);	
 		String msg = "User Registerd with id : " + userSaved.getId();
 		modelMap.addAttribute("msg", msg);
 		return "registerUser";
@@ -49,6 +49,11 @@ public class UserController {
 	public String home(ModelMap modelmap) {
 		List<User> allUsers = service.getAllUsers();
 		modelmap.addAttribute("users", allUsers);
+		return "index";
+	}
+	
+	@RequestMapping("/test")
+	public String test() {
 		return "index";
 	}
 

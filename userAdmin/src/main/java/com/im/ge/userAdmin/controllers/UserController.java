@@ -54,7 +54,8 @@ public class UserController {
 	
 	@RequestMapping("/test")
 	public String test() {
-		return "index";
+
+		return "index.html";
 	}
 
 

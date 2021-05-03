@@ -7,27 +7,32 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.im.ge.userAdmin.entities.User;
+import com.im.ge.userAdmin.repos.UserRepository;
 import com.im.ge.userAdmin.service.UserService;
 
 @Controller
 public class UserController {
 
 	@Autowired
-	UserService service;
+	private UserService service;
 
-	@RequestMapping("/registerUser")
-	public String showCreate() {
-		return "registerUser";
-	}
+	@Autowired
+	private UserRepository userRepository;
 
-	@RequestMapping("/saveUser")
+	/*
+	 * @RequestMapping("/registerUser") public String showCreate() { return
+	 * "registerUser"; }
+	 
+	@RequestMapping("/register")
 	public String saveUser(@ModelAttribute("user") User user, ModelMap modelMap) {
-		User userSaved = service.UsesaveUser(user);	
+		User userSaved = service.UsesaveUser(user);
 		String msg = "User Registerd with id : " + userSaved.getId();
 		modelMap.addAttribute("msg", msg);
-		return "registerUser";
+		return "reg2";
 
 	}
 
@@ -37,26 +42,64 @@ public class UserController {
 		modelmap.addAttribute("users", allUsers);
 		return "allUsers";
 	}
-	
+
 	@RequestMapping("/loginUser")
 	public String login(ModelMap modelmap) {
 		List<User> allUsers = service.getAllUsers();
 		modelmap.addAttribute("users", allUsers);
 		return "login";
 	}
-	
+
 	@RequestMapping("/")
-	public String home(ModelMap modelmap) {
-		List<User> allUsers = service.getAllUsers();
-		modelmap.addAttribute("users", allUsers);
+	public String home() {
 		return "index";
 	}
-	
-	@RequestMapping("/test")
-	public String test() {
-
-		return "index.html";
+	@RequestMapping(value = "/login")
+	public String showLogin () {
+		return "login";
 	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public String login(@RequestParam("email") String email, @RequestParam("password") String password,
+			ModelMap modelMap) {
+		User user = userRepository.findByEmail(email);
+		if (user.getUserpassword().equals(password)) {
+			return "dashboad";
+		} else {
+			modelMap.addAttribute("msg", "Invalid Email or Password. Please Try Agin.");
+		}
+		return "dashboad";
 
+	}
+	*/
+	
+	
+	@RequestMapping("/showReg")
+	public String showRegisterPage() {
+		return "reg2";
+	}
+	
+	@RequestMapping(value = "/saveUser" , method = RequestMethod.POST)
+	private String register(@ModelAttribute("user") User user) {
+		userRepository.save(user);
+		return "login2";
 
+	}
+	
+	@RequestMapping(value = "/login" , method = RequestMethod.POST)
+	public String login(@RequestParam("email") String email, @RequestParam("userpassword") String password,
+			ModelMap modelMap) {
+		System.out.println("t1");
+		User user = userRepository.findByEmail(email);
+		if (user.getUserpassword().equals(password)) {
+			System.out.println("t2");
+			return "dashboad";
+		} else {
+			modelMap.addAttribute("msg", "Invalid Email or Password. Please Try Agin.");
+			
+		}
+		System.out.println("t3");
+		return "index";
+
+	}
 }

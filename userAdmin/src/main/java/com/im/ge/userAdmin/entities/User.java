@@ -6,9 +6,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.dom4j.tree.AbstractEntity;
+
 @Entity
 @Table(name = "useradmin")
-public class User {
+public class User extends AbstractEntity{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

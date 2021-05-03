@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -148,8 +151,8 @@ input[type=submit]:hover {
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
-      <li><a href="http://localhost:9090/sep/loginUser">Login</a></li>
-      <li><a href="http://localhost:9090/sep/saveUser">Register</a></li>
+      <li><a href="http://localhost:9090/sep/login">Login</a></li>
+      <li><a href="http://localhost:9090/sep/test">Register</a></li>
     </ul>
   </div>
 </nav>
@@ -157,7 +160,7 @@ input[type=submit]:hover {
 <h2>Login</h2>
 
 <div class="container">
-  <form action="/action_page.php">
+  <form action="login" method="post">
     <div class="row">
       <h2 style="text-align:center">Login with Social Media or Manually</h2>
       <div class="vl">
@@ -181,9 +184,9 @@ input[type=submit]:hover {
           <p>Or sign in manually:</p>
         </div>
 
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
+        <input type="text" name="email" placeholder="Email Address" required>
+        <input type="password" name="userpassword" placeholder="Password" required>
+        <button type="submit" class="btn">Register</button>
       </div>
       
     </div>
@@ -193,7 +196,7 @@ input[type=submit]:hover {
 <div class="bottom-container">
   <div class="row">
     <div class="col">
-      <a href="#" style="color:white" class="btn">Sign up</a>
+      <a href="http://localhost:9090/sep/test" style="color:white" class="btn">Sign up</a>
     </div>
     <div class="col">
       <a href="#" style="color:white" class="btn">Forgot password?</a>

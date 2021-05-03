@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,42 +74,8 @@ body {
 </head>
 <body>
 
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="http://localhost:9090/sep/">GET IT
-					CERTIFICATION </a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li class="active"><a href="#">Home</a></li>
-				<li><a href="http://localhost:9090/sep/loginUser">Login</a></li>
-				<li><a href="http://localhost:9090/sep/saveUser">Register</a></li>
-			</ul>
-		</div>
-	</nav>
-
-	<form action="saveUser" method="post" style="max-width: 500px; margin: auto">
-		<h2>Register Form</h2>
-
-		<div class="input-container">
-			<i class="fa fa-user icon"></i> <input class="input-field"
-				type="text" placeholder="First Name" name="firstname">
-		</div>
-
-		<div class="input-container">
-			<i class="fa fa-user icon"></i> <input class="input-field"
-				type="text" placeholder="Last Name" name="lastname">
-		</div>
-
-		<div class="input-container">
-			<i class="fa fa-user icon"></i> <input class="input-field"
-				type="text" placeholder="Username" name="username">
-		</div>
-
-		<div class="input-container">
-			<i class="fa fa-envelope icon"></i> <input class="input-field"
-				type="text" placeholder="Mobile" name="mobile">
-		</div>
+	<form action="login" method="post" style="max-width: 500px; margin: auto">
+		<h2>login</h2>
 
 		<div class="input-container">
 			<i class="fa fa-envelope icon"></i> <input class="input-field"
@@ -122,7 +87,7 @@ body {
 				type="password" placeholder="Password" name="userpassword">
 		</div>
 
-		<button type="submit" class="btn">Register</button>
+		<button type="submit" class="btn">Login</button>
 	</form>
 
 </body>

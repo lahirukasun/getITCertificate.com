@@ -19,9 +19,9 @@
       <a class="navbar-brand" href="http://localhost:9090/sep/">GET IT CERTIFICATION </a>
     </div>
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Home</a></li>
+      <li class="active"><a href="http://localhost:9090/sep/">Home</a></li>
       <li><a href="http://localhost:9090/sep/loginUser">Login</a></li>
-      <li><a href="http://localhost:9090/sep/saveUser">Register</a></li>
+      <li><a href="http://localhost:9090/sep/test">Register</a></li>
     </ul>
   </div>
 </nav>

@@ -20,8 +20,8 @@
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="http://localhost:9090/sep/">Home</a></li>
-      <li><a href="http://localhost:9090/sep/loginUser">Login</a></li>
-      <li><a href="http://localhost:9090/sep/test">Register</a></li>
+      <li><a href="http://localhost:9090/sep/login">Login</a></li>
+      <li><a href="http://localhost:9090/sep/showReg">Register</a></li>
     </ul>
   </div>
 </nav>

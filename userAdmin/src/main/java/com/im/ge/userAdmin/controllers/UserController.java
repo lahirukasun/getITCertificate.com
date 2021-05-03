@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.im.ge.userAdmin.entities.User;
 import com.im.ge.userAdmin.repos.UserRepository;
 import com.im.ge.userAdmin.service.UserService;
+import com.im.ge.userAdmin.util.EmailUtil;
 
 @Controller
 public class UserController {
@@ -22,66 +23,26 @@ public class UserController {
 
 	@Autowired
 	private UserRepository userRepository;
-
-	/*
-	 * @RequestMapping("/registerUser") public String showCreate() { return
-	 * "registerUser"; }
-	 
-	@RequestMapping("/register")
-	public String saveUser(@ModelAttribute("user") User user, ModelMap modelMap) {
-		User userSaved = service.UsesaveUser(user);
-		String msg = "User Registerd with id : " + userSaved.getId();
-		modelMap.addAttribute("msg", msg);
-		return "reg2";
-
-	}
-
-	@RequestMapping("/savedUser")
-	public String displayAllUsers(ModelMap modelmap) {
-		List<User> allUsers = service.getAllUsers();
-		modelmap.addAttribute("users", allUsers);
-		return "allUsers";
-	}
-
-	@RequestMapping("/loginUser")
-	public String login(ModelMap modelmap) {
-		List<User> allUsers = service.getAllUsers();
-		modelmap.addAttribute("users", allUsers);
-		return "login";
-	}
-
-	@RequestMapping("/")
-	public String home() {
-		return "index";
-	}
-	@RequestMapping(value = "/login")
-	public String showLogin () {
-		return "login";
-	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestParam("email") String email, @RequestParam("password") String password,
-			ModelMap modelMap) {
-		User user = userRepository.findByEmail(email);
-		if (user.getUserpassword().equals(password)) {
-			return "dashboad";
-		} else {
-			modelMap.addAttribute("msg", "Invalid Email or Password. Please Try Agin.");
-		}
-		return "dashboad";
-
-	}
-	*/
-	
+	@Autowired
+	EmailUtil emailUtil;
 	
 	@RequestMapping("/showReg")
 	public String showRegisterPage() {
 		return "reg2";
 	}
 	
+	@RequestMapping(value = "/login")
+	public String showLogin () {
+		return "login";
+	}
+	
+	
 	@RequestMapping(value = "/saveUser" , method = RequestMethod.POST)
 	private String register(@ModelAttribute("user") User user) {
-		userRepository.save(user);
+		User saved_user = userRepository.save(user);
+		String msg = "You have scusessfully regersterd for getitcertication.com.";
+		emailUtil.sendEmail(saved_user.getEmail(), "User Account is Created for "+saved_user.getFirstname(), msg);
 		return "login2";
 
 	}
@@ -91,8 +52,10 @@ public class UserController {
 			ModelMap modelMap) {
 		System.out.println("t1");
 		User user = userRepository.findByEmail(email);
+		String user_firstname = user.getFirstname();
 		if (user.getUserpassword().equals(password)) {
 			System.out.println("t2");
+			modelMap.addAttribute("user_firstname", user_firstname);
 			return "dashboad";
 		} else {
 			modelMap.addAttribute("msg", "Invalid Email or Password. Please Try Agin.");

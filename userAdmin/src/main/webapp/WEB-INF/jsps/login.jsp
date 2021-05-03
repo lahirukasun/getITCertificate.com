@@ -192,14 +192,13 @@ input[type=submit]:hover {
     </div>
   </form>
 </div>
-
 <div class="bottom-container">
   <div class="row">
     <div class="col">
       <a href="http://localhost:9090/sep/test" style="color:white" class="btn">Sign up</a>
     </div>
     <div class="col">
-      <a href="#" style="color:white" class="btn">Forgot password?</a>
+      <a href="http://localhost:9090/sep/forgotPW" style="color:white" class="btn">Forgot password?</a>
     </div>
   </div>
 </div>

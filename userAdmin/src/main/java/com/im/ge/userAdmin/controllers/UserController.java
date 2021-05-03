@@ -65,4 +65,17 @@ public class UserController {
 		return "index";
 
 	}
+	
+	@RequestMapping(value = "/forgotPW")
+	public String showPwReset () {
+		return "forgotPW";
+	}
+	
+	@RequestMapping(value = "/forgotPW" , method = RequestMethod.POST)
+	String forgotPassword(@RequestParam("email") String email,ModelMap modelMap) {
+		User user = userRepository.findByEmail(email);
+		emailUtil.sendEmail(user.getEmail(), "Your Account Password", user.getUserpassword()+" : is your curent password");
+		modelMap.addAttribute("msg", "Please Check your registerd email ("+user.getEmail()+") address.");
+		return "login";
+	}
 }

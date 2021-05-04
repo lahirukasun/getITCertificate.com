@@ -50,18 +50,21 @@ public class UserController {
 	@RequestMapping(value = "/login" , method = RequestMethod.POST)
 	public String login(@RequestParam("email") String email, @RequestParam("userpassword") String password,
 			ModelMap modelMap) {
-		System.out.println("t1");
+	
 		User user = userRepository.findByEmail(email);
 		String user_firstname = user.getFirstname();
+		int isAdmin= user.getIsadmin();
 		if (user.getUserpassword().equals(password)) {
-			System.out.println("t2");
 			modelMap.addAttribute("user_firstname", user_firstname);
+			if(isAdmin==1) {
+				return "admin_dashboad";	
+			}
 			return "dashboad";
 		} else {
 			modelMap.addAttribute("msg", "Invalid Email or Password. Please Try Agin.");
 			
 		}
-		System.out.println("t3");
+
 		return "index";
 
 	}
@@ -72,10 +75,17 @@ public class UserController {
 	}
 	
 	@RequestMapping(value = "/forgotPW" , method = RequestMethod.POST)
-	String forgotPassword(@RequestParam("email") String email,ModelMap modelMap) {
+	public String forgotPassword(@RequestParam("email") String email,ModelMap modelMap) {
 		User user = userRepository.findByEmail(email);
 		emailUtil.sendEmail(user.getEmail(), "Your Account Password", user.getUserpassword()+" : is your curent password");
 		modelMap.addAttribute("msg", "Please Check your registerd email ("+user.getEmail()+") address.");
 		return "login";
 	}
+	
+	public User users() {
+		return null;
+		
+	}
+	
+	
 }

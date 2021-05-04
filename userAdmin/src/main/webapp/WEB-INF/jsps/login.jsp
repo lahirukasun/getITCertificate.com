@@ -152,7 +152,7 @@ input[type=submit]:hover {
     <ul class="nav navbar-nav">
       <li class="active"><a href="#">Home</a></li>
       <li><a href="http://localhost:9090/sep/login">Login</a></li>
-      <li><a href="http://localhost:9090/sep/test">Register</a></li>
+      <li><a href="http://localhost:9090/sep/showReg">Register</a></li>
     </ul>
   </div>
 </nav>
@@ -186,7 +186,7 @@ input[type=submit]:hover {
 
         <input type="text" name="email" placeholder="Email Address" required>
         <input type="password" name="userpassword" placeholder="Password" required>
-        <button type="submit" class="btn">Register</button>
+        <button type="submit" class="btn">Login</button>
       </div>
       
     </div>
@@ -195,7 +195,7 @@ input[type=submit]:hover {
 <div class="bottom-container">
   <div class="row">
     <div class="col">
-      <a href="http://localhost:9090/sep/test" style="color:white" class="btn">Sign up</a>
+      <a href="http://localhost:9090/sep/showReg" style="color:white" class="btn">Sign up</a>
     </div>
     <div class="col">
       <a href="http://localhost:9090/sep/forgotPW" style="color:white" class="btn">Forgot password?</a>
